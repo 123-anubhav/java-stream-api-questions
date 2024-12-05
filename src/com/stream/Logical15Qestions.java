@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 public class Logical15Qestions {
@@ -120,12 +121,12 @@ public class Logical15Qestions {
 	
 		/*
 		 // 9. Who has the most working experience in the organization?
-		 * */
+		 *
 		Optional<Employee> mostExpPerson = list.min(Comparator.comparing(Employee::getYearOfJoining));
 		if(mostExpPerson.isPresent()) {
 			System.out.println(" most experience person in our organization is :: "+mostExpPerson.get());
 		}
-		
+		 */
 		/*
 		 // 10. How many male and female employees are there in the DEVOPS and HR DEPT ? 
 
@@ -134,5 +135,73 @@ public class Logical15Qestions {
 		
 		filteredData.forEach((dept,totalCount)->System.out.println(dept+"  ::  "+totalCount));
 		 */
+		
+		/*
+		// 11. What is the average salary of male and female employees?
+		Map<String, Double> avgSalByGender = list.collect(Collectors.groupingBy(gender->gender.getGender(),Collectors.averagingDouble(Employee::getSalary)));
+		avgSalByGender.forEach((dept,avgSal)-> System.out.println(dept+" - "+avgSal));
+		*/
+		
+		/*
+		// 12. List down the names of all employees in each department.
+		Map<String,List<Employee>> collect = list.collect(Collectors.groupingBy(dept->dept.getDepartment()));
+		collect.forEach((dept,emp)->System.out.println(dept+" ::  "+emp));
+		*/
+		
+		/*
+	       // 13. What is the average salary and total salary of the whole organization?
+		 */
+		// Average salary of the entire organization
+		
+		/*// THIS  CODE OUTPUT LIKE THIS 
+		 *  DEVOPS - 101458.0
+			ENGINEER - 145458.0
+			SOFTWARE ENGINEER - 62458.0
+		 list.collect(
+				Collectors.groupingBy(
+						dept->dept.getDepartment(),Collectors.averagingDouble(Employee::getSalary)))
+						.forEach((dept,avgSal)->System.out.println(dept+" - "+avgSal));
+		*/
+		
+		/*
+		Double avgSalOfOrg = list.collect(Collectors.averagingDouble(Employee::getSalary));
+		System.out.println(" AVERAGE SALARY OF ORGANIZATION :: "+avgSalOfOrg);
+		*/
+		
+		/*
+		// Calculate the total salary of the organization
+		DoubleStream totalSalInOrg = list.mapToDouble(Employee::getSalary);
+		double totalSalary = totalSalInOrg.sum();
+		System.out.println("totalSalInOrg :: "+totalSalary);
+		*/
+					
+		/*
+		// 15. Who is the oldest employee in the organization? What is his age, and which department does he belong to?
+		
+		Optional<Employee> filteredData = list.collect(Collectors.minBy(Comparator.comparing(Employee::getYearOfJoining)));
+		if(filteredData.isPresent()) {
+			System.out.println("his age is :: "+filteredData.get().getAge()+"\n :: department name is :: "+filteredData.get().getDepartment());
+			System.out.println("total record of employee is ::   "+filteredData.get());
+		}
+		*/
+		
+		/*
+		//  14. Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years.
+		 */
+		
+		/* CONCEPTS FOR QUESTION - 14 [ Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years. ]
+		 Collectors.partitioningBy(): This is a convenient collector for partitioning a stream into two groups based on a condition.
+
+		The condition here is whether the employee's age is less than or equal to 25.
+		It will return a Map<Boolean, List<Employee>>:
+		The true key will contain employees who are 25 years old or younger.
+		The false key will contain employees who are older than 25.
+		
+		Printing the Results:
+		First, employees with age ≤ 25 are printed.
+		Then, employees with age > 25 are printed. 
+		 */
+
+		
 	}
 }
