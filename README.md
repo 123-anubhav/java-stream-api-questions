@@ -182,9 +182,6 @@ System.out.println("Total Salary of Organization: " + totalSalary);
 
 ###
 
-
-Sure! Here’s a beautified version of your code and explanations for the logical questions using Java 8 Stream API:
-
 ---
 
 # Logical Questions Using Java 8 Stream API
