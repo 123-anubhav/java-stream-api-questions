@@ -181,3 +181,138 @@ System.out.println("Total Salary of Organization: " + totalSalary);
 ```
 
 ###
+
+
+Sure! Here’s a beautified version of your code and explanations for the logical questions using Java 8 Stream API:
+
+---
+
+# Logical Questions Using Java 8 Stream API
+
+This project demonstrates how to solve various logical questions using the Java 8 Stream API. Below are examples using different collections and stream operations.
+
+## Code Implementation
+
+```java
+package com.stream;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class logicalQ {
+    public static void main(String[] args) {
+        // Example 1: Iterate and print elements of a list
+        List<Integer> asList = Arrays.asList(5, 78, 98, 56, 50, 565);
+        Stream<Integer> stream = asList.stream();
+        stream.forEach(i -> System.out.println(i));
+
+        // Example 2: Filter and print elements from a list
+        List<String> list = Arrays.asList("INDIA", "CHINA", "USA", "UK", "MEXICO", "ENGLAND", "SRILANKA", "PAKISTAN");
+        List<String> collect = list.stream().filter(p -> p.equals("UK")).collect(Collectors.toList());
+        collect.forEach(i -> System.out.println(i));
+
+        List<String> ui = Arrays.asList("NG", "REACT", "BOOTSTRAP", "CSS", "JS", "AJAX", "ES8", "JQUERY");
+
+        // Example 3: Using flatMap to combine multiple lists
+        List<String> backend = Arrays.asList("JAVA", ".NET", "PYTHON", "PHP");
+        Stream<List<String>> listOfList = Stream.of(ui, backend);
+        listOfList.forEach(i -> System.out.println(i));
+
+        // Example 4: Flattening lists and printing elements
+        Stream<String> flatMap = listOfList.flatMap(p -> p.stream());
+        flatMap.forEach(print -> System.out.println(print));
+
+        List<String> courses = Arrays.asList("BOOT", "ANGULAR", "REACT", "JAVA-8", "MYSQL");
+
+        // Example 5: Finding an element in the list
+        Optional<String> status1 = courses.stream().filter(p -> p.contains("REACT")).findAny();
+        status1.ifPresent(System.out::println);
+
+        // Example 6: Terminal operations: anyMatch, allMatch, noneMatch
+        boolean anyMatch = courses.stream().anyMatch(i -> i.contains("MYSQL"));
+        System.out.println("Is any data found or not: " + anyMatch);
+
+        boolean allMatch = courses.stream().allMatch(i -> i.contains("MYSQL"));
+        System.out.println("Is any data found or not: " + allMatch);
+
+        boolean noneMatch = courses.stream().noneMatch(i -> i.contains("MYSQL"));
+        System.out.println("Is any data found or not: " + noneMatch);
+
+        boolean noneMatch1 = courses.stream().noneMatch(i -> i.contains("PHP"));
+        System.out.println("Is any data found or not: " + noneMatch1);
+
+        // Example 7: Finding the first matching element
+        Optional<String> first = courses.stream().filter(p -> p.contains("BOOT")).findFirst();
+        first.ifPresent(System.out::println);
+
+        // Example 8: Converting elements to lowercase
+        courses.stream().map(String::toLowerCase).forEach(System.out::println);
+    }
+}
+```
+
+### Explanation of Code Examples of logicalQ.java class
+
+1. **Iterate and Print Elements**:
+   ```java
+   List<Integer> asList = Arrays.asList(5, 78, 98, 56, 50, 565);
+   Stream<Integer> stream = asList.stream();
+   stream.forEach(i -> System.out.println(i));
+   ```
+
+2. **Filter and Print Elements**:
+   ```java
+   List<String> list = Arrays.asList("INDIA", "CHINA", "USA", "UK", "MEXICO", "ENGLAND", "SRILANKA", "PAKISTAN");
+   List<String> collect = list.stream().filter(p -> p.equals("UK")).collect(Collectors.toList());
+   collect.forEach(i -> System.out.println(i));
+   ```
+
+3. **Using FlatMap to Combine Multiple Lists**:
+   ```java
+   List<String> ui = Arrays.asList("NG", "REACT", "BOOTSTRAP", "CSS", "JS", "AJAX", "ES8", "JQUERY");
+   List<String> backend = Arrays.asList("JAVA", ".NET", "PYTHON", "PHP");
+   Stream<List<String>> listOfList = Stream.of(ui, backend);
+   listOfList.forEach(i -> System.out.println(i));
+   ```
+
+4. **Flattening Lists and Printing Elements**:
+   ```java
+   Stream<String> flatMap = listOfList.flatMap(p -> p.stream());
+   flatMap.forEach(print -> System.out.println(print));
+   ```
+
+5. **Finding an Element in the List**:
+   ```java
+   List<String> courses = Arrays.asList("BOOT", "ANGULAR", "REACT", "JAVA-8", "MYSQL");
+   Optional<String> status1 = courses.stream().filter(p -> p.contains("REACT")).findAny();
+   status1.ifPresent(System.out::println);
+   ```
+
+6. **Terminal Operations: anyMatch, allMatch, noneMatch**:
+   ```java
+   boolean anyMatch = courses.stream().anyMatch(i -> i.contains("MYSQL"));
+   System.out.println("Is any data found or not: " + anyMatch);
+
+   boolean allMatch = courses.stream().allMatch(i -> i.contains("MYSQL"));
+   System.out.println("Is any data found or not: " + allMatch);
+
+   boolean noneMatch = courses.stream().noneMatch(i -> i.contains("MYSQL"));
+   System.out.println("Is any data found or not: " + noneMatch);
+
+   boolean noneMatch1 = courses.stream().noneMatch(i -> i.contains("PHP"));
+   System.out.println("Is any data found or not: " + noneMatch1);
+   ```
+
+7. **Finding the First Matching Element**:
+   ```java
+   Optional<String> first = courses.stream().filter(p -> p.contains("BOOT")).findFirst();
+   first.ifPresent(System.out::println);
+   ```
+
+8. **Converting Elements to Lowercase**:
+   ```java
+   courses.stream().map(String::toLowerCase).forEach(System.out::println);
+   ```
